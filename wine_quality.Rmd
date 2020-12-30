@@ -1,0 +1,59 @@
+---
+title: "sds325h_project_jec4968"
+author: "John Henry Cruz"
+date: "4/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## What Factors Contribute to A Top Tier Red Wine? An Analysis
+### John Henry Cruz
+
+### Packages and Dataset
+```{r}
+wine_dataset <- read.csv("winequality-red.csv")
+
+library(car)
+
+```
+
+### Regression Model and Model Fit (Adjusted R-squared)
+```{r}
+# linear regression model with the predicting factors and the outcome variable
+mymodel_0 <- lm(quality~pH+residual.sugar+fixed.acidity*alcohol, data=wine_dataset)
+summary(mymodel_0)
+
+```
+
+### Correlation Analysis and Test
+```{r}
+# correlation between each predicting variable and the wine quality
+cor(wine_dataset$pH,wine_dataset$quality)
+cor(wine_dataset$alcohol,wine_dataset$quality)
+cor(wine_dataset$residual.sugar,wine_dataset$quality)
+cor(wine_dataset$fixed.acidity,wine_dataset$quality)
+
+# correlation tests between each predicting variable and the wine quality
+cor.test(wine_dataset$pH,wine_dataset$quality)
+cor.test(wine_dataset$alcohol,wine_dataset$quality)
+cor.test(wine_dataset$residual.sugar,wine_dataset$quality)
+cor.test(wine_dataset$fixed.acidity,wine_dataset$quality)
+
+```
+
+### Assumptions
+```{r}
+#checking for normaility
+hist(mymodel_0$residuals)
+
+#checking for equal variance
+plot(mymodel_0$fitted.values,mymodel_0$residuals)
+abline(h=0, col='red')
+
+#check for possible colinearatiy
+vif(mymodel_0)
+```
+
