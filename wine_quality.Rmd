@@ -1,5 +1,5 @@
 ---
-title: "sds325h_project_jec4968"
+title: "wine quality analysis"
 author: "John Henry Cruz"
 date: "4/25/2020"
 output: html_document
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Packages and Dataset
 ```{r}
-wine_dataset <- read.csv("winequality-red.csv")
+wine_dataset <- read.csv("/Users/johnhenrycruz/Documents/kid-codei/wine_quality/winequality-red.csv", sep = ";")
 
 library(car)
 
